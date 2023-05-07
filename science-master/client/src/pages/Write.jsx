@@ -8,8 +8,9 @@ import moment from 'moment';
 const Write = () => {
 
   const state = useLocation().state
-  const [value, setValue] = useState(state?.title ||'');
-  const [title, setTitle] = useState(state?.desc || '');
+  const [value, setValue] = useState(state?.desc ||'');
+  const [content, setContent] = useState(state?.content || '');
+  const [title, setTitle] = useState(state?.title || '');
   const [file, setFile] = useState(null);
   const [cat, setCat] = useState(state?.cat || '');
 
@@ -35,11 +36,13 @@ const Write = () => {
       ? await axios.put(`/posts/${state.id}`, {
         title, 
         desc:value, 
+        content,
         cat, 
         img: file ? imgUrl : ""
     }) :  await axios.post(`/posts/`, {
       title, 
       desc:value, 
+      content,
       cat, 
       img: file ? imgUrl : "",
       date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss")
@@ -55,7 +58,8 @@ const Write = () => {
       <div className="content">
         <input type="text" value={title} placeholder='Title' onChange={e => setTitle(e.target.value)} />
         <div className="editorContainer">
-          <ReactQuill className="editor" theme="snow" value={value} onChange={setValue} />
+          <ReactQuill className="descEditor" theme="snow" value={value} onChange={setValue} />
+          <ReactQuill className="contentEditor" theme="snow" value={content} onChange={setContent} />
         </div>
       </div>
       <div className="menu">
@@ -67,7 +71,7 @@ const Write = () => {
           <span>
             <b>Visibility: </b> Public
           </span>
-          <input style={{ display: "none" }} type="file" id="file" onChange={e => setFile(e.target.files[0])}/>
+          <input style={{ display: "none" }} type="file" id="file" name="" onChange={e => setFile(e.target.files[0])}/>
           <label className="file" htmlFor="file">Upload Image</label>
           <div className="buttons">
             <button>Save as a draft</button>
@@ -82,7 +86,7 @@ const Write = () => {
           </div>
           <div className="cat">
             <input type="radio" checked={cat === "medicine"} name="cat" value="medicine" id="medicine" onChange={e => setCat(e.target.value)}/>
-            <label htmlFor="medicine">Medicine</label>
+            <label htmlFor="medicine">Health</label>
           </div>
           <div className="cat">
             <input type="radio" checked={cat === "environment"} name="cat" value="environment" id="environment" onChange={e => setCat(e.target.value)}/>

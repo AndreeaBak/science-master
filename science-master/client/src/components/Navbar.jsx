@@ -20,7 +20,7 @@ const Navbar = () => {
             <h6>IT</h6>
           </Link>
           <Link className='link' to="/?cat=medicine">
-            <h6>Medicine</h6>
+            <h6>Health</h6>
           </Link>
           <Link className='link' to="/?cat=environment">
             <h6>Environment</h6>
