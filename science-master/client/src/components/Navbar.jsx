@@ -4,7 +4,7 @@ import Logo from "../img/logo.png"
 import { AuthContext } from '../context/authContext'
 
 const Navbar = () => {
-
+//to={`/profile/${currentUser.id}`}
   const {currentUser, logout} = useContext(AuthContext)
 
   return (
@@ -34,7 +34,7 @@ const Navbar = () => {
           <Link className='link' to="/?cat=finance">
             <h6>Finance</h6>
           </Link>
-          <span>{currentUser?.username}</span>
+          <Link className='link' to={`/profile/${currentUser?.id}`}>{currentUser?.username}</Link> 
           {currentUser? (
           <span onClick={logout}>Logout</span> 
           ) :(
