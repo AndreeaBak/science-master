@@ -6,6 +6,7 @@ import Menu from '../components/Menu'
 import axios from 'axios'
 import moment from 'moment'
 import { AuthContext } from '../context/authContext'
+import Comments from '../components/Comments'
 import DOMPurify from "dompurify";
 
 const Article = () => {
@@ -67,7 +68,9 @@ const Article = () => {
             __html: DOMPurify.sanitize(post.content),
           }}
         ></p> 
+        <Comments postId={post.id}></Comments>
       </div>
+      
       <Menu cat={post.cat}/>
     </div>
   )

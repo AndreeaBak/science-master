@@ -266,105 +266,112 @@ $lightGreen: #c8b2f0;
           text-align: justify;
           line-height: 30px;
         }
-      }
 
-      // .comments {
-      //   margin-top: 20px;
-      // }
-      
-      // .comments-title {
-      //   font-size: 30px;
-      //   margin-bottom: 20px;
-      // }
-      
-      // .comments-container {
-      //   margin-top: 40px;
-      // }
-      
-      // .comment-form-title {
-      //   font-size: 22px;
-      // }
-      
-      // .comment-form-textarea {
-      //   width: 100%;
-      //   height: 80px;
-      //   margin-bottom: 8px;
-      //   margin-top: 8px;
-      //   border: 1px solid rgb(107, 114, 12);
-      // }
-      
-      // .comment-form-button {
-      //   font-size: 16px;
-      //   padding: 8px 16px;
-      //   background: rgb(59, 130, 246);
-      //   border-radius: 8px;
-      //   color: white;
-      // }
-      
-      // .comment-form-button:hover:enabled {
-      //   cursor: pointer;
-      //   background: rgb(37, 99, 235);
-      // }
-      
-      // .comment-form-button:disabled {
-      //   opacity: 0.7;
-      //   cursor: default;
-      // }
-      
-      // .comment-form-cancel-button {
-      //   margin-left: 10px;
-      // }
-      
-      // .comment {
-      //   display: flex;
-      //   margin-bottom: 28px;
-      // }
-      
-      // .comment-image-container {
-      //   margin-right: 12px;
-      // }
-      
-      // .comment-image-container img {
-      //   border-radius: 50px;
-      // }
-      
-      // .comment-right-part {
-      //   width: 100%;
-      // }
-      
-      // .comment-content {
-      //   display: flex;
-      // }
-      
-      // .comment-author {
-      //   margin-right: 8px;
-      //   font-size: 20px;
-      //   color: rgb(59, 130, 246);
-      // }
-      
-      // .comment-text {
-      //   font-size: 18px;
-      // }
-      
-      // .comment-actions {
-      //   display: flex;
-      //   font-size: 12px;
-      //   color: rgb(51, 51, 51);
-      //   cursor: pointer;
-      //   margin-top: 8px;
-      // }
-      
-      // .comment-action {
-      //   margin-right: 8px;
-      // }
-      
-      // .comment-action:hover {
-      //   text-decoration: underline;
-      // }
-      
-      // .replies {
-      //   margin-top: 20px;
-      // }
+        .comments {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          
+          .write {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            
+            input[type="text"] {
+              flex: 1;
+              padding: 0.5rem;
+              border: none;
+              border-radius: 0.25rem;
+              box-shadow: 0 0 0.125rem rgba(0, 0, 0, 0.2);
+              
+              &:focus {
+                outline: none;
+                box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.4);
+              }
+            }
+            
+            button {
+              padding: 0.5rem 1rem;
+              background-color: #4CAF50;
+              color: #fff;
+              border: none;
+              border-radius: 0.25rem;
+              cursor: pointer;
+              
+              &:hover {
+                background-color: #3e8e41;
+              }
+              
+              &:disabled {
+                background-color: #ccc;
+                cursor: not-allowed;
+              }
+            }
+          }
+          
+          .comment {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            padding: 1rem;
+            background-color: #f5f5f5;
+            border-radius: 0.25rem;
+            position: relative;
+
+            .info {
+              display: flex;
+              flex-direction: column;
+              gap: 0.5rem;
+              flex: 1;
+            
+              .delete-button {
+                position: absolute;
+                right: 0.1rem;
+                top: 0.1rem;
+                padding: 0.5rem;
+                background-color: transparent;
+                color: #c82525;
+                border: none;
+                cursor: pointer;
+            
+                &:hover {
+                  background-color: #c82525;
+                  color: #fff;
+                }
+            
+                &:disabled {
+                  background-color: #ccc;
+                  cursor: not-allowed;
+                }
+              }
+            
+              span {
+                font-weight: bold;
+              }
+            
+              p {
+                margin: 0;
+              }
+            }
+            
+            
+            .date {
+              margin-left: auto;
+              font-size: 0.875rem;
+              color: #666;
+            }
+          }
+          
+          .error {
+            color: #f00;
+          }
+          
+          .loading {
+            text-align: center;
+            color: #666;
+          }
+        }
+      }
 
       .menu {
         flex: 2;
