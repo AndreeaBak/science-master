@@ -437,18 +437,24 @@ $lightGreen: #c8b2f0;
           border: 1px solid lightgray;
         }
 
-        .editorContainer {
-          height: 700px;
+        .descEditorContainer {
+          height: 200px;
           border: 1px solid lightgray;
           overflow: scroll;
         
           .descEditor {
-            height: 30%;
+            height: 100%;
             border: none;
           }
+        }
         
+        .contentEditorContainer{
+          height: 500px;
+          border: 1px solid lightgray;
+          overflow: scroll;
+
           .contentEditor {
-            height: 70%;
+            height: 100%;
             border: none;
           }
         }
