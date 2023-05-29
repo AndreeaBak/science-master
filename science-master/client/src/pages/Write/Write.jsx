@@ -4,6 +4,7 @@ import 'react-quill/dist/quill.snow.css';
 import axios from "axios"
 import { useLocation, useNavigate } from 'react-router-dom';
 import moment from 'moment';
+import './write.scss'
 
 const Write = () => {
 

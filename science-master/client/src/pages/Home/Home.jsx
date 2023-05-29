@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {Link, useLocation} from 'react-router-dom'
 import axios from 'axios'
+import './home.scss'
 
 const Home = () => {
   const [posts, setPosts] = useState([])

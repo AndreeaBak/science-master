@@ -2,6 +2,7 @@ import React from 'react'
 import {useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom'
 import axios from "axios"
+import './register.scss'
 
 const Register = () => {
   const [inputs, setInputs] = useState({

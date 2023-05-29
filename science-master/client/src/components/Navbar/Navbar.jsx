@@ -1,7 +1,8 @@
 import React, { useContext } from 'react'
 import {Link} from 'react-router-dom'
-import Logo from "../img/logo.png"
-import { AuthContext } from '../context/authContext'
+import Logo from "../../img/logo.png"
+import { AuthContext } from '../../context/authContext'
+import './navbar.scss'
 
 const Navbar = () => {
 //to={`/profile/${currentUser.id}`}

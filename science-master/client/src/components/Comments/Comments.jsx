@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import axios from 'axios'
 import moment from "moment";
-import { AuthContext } from '../context/authContext'
+import { AuthContext } from '../../context/authContext'
 
 const Comments = ({ postId }) => {
   const [desc, setDesc] = useState("");
@@ -38,7 +38,6 @@ const Comments = ({ postId }) => {
       .post("/comments", { desc, postId })
       .then(() => {
         setDesc("");
-        // Refetch comments
         axios.get("/comments?postId=" + postId).then((res) => {
           setComments(res.data);
         });
@@ -60,7 +59,6 @@ const Comments = ({ postId }) => {
     }
   };
 
-  
 
   return (
     <div className="comments">

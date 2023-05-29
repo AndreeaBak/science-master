@@ -1,12 +1,13 @@
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import Register from "./pages/Register"
-import Login from "./pages/Login"
-import Home from "./pages/Home"
-import Article from "./pages/Article"
-import Write from "./pages/Write"
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import "./style.scss"
+import Register from "./pages/Register/Register.jsx"
+import Login from "./pages/Login/Login.jsx"
+import Home from "./pages/Home/Home.jsx"
+import Article from "./pages/Article/Article.jsx"
+import Write from "./pages/Write/Write.jsx"
+import Profile from "./pages/Profile/Profile.jsx"
+import Navbar from "./components/Navbar/Navbar.jsx";
+import Footer from "./components/Footer/Footer.jsx";
+
 
 const Layout = () => {
   return(
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
         path:"/write",
         element:<Write />
       },
+      {
+        path:"/profile/:id",
+        element: <Profile />,
+      }
 
     ]
   },
@@ -46,11 +51,7 @@ const router = createBrowserRouter([
     path:"/login",
     element: <Login />,
   },
-  {
-    path:"/article",
-    element: <Article />,
-  },
- 
+  
 ])
 
 function App() {

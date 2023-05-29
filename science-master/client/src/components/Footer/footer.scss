@@ -1,0 +1,37 @@
+$lightGreen: #c8b2f0;
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #3498db;
+  --light-color: #ecf0f1;
+  --dark-color: #34495e;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+
+  .container {
+    width: 1024px;
+    
+    .link {
+      text-decoration: none;
+      color: inherit;
+    }
+    //FOOTER
+
+    footer {
+      margin-top: 100px;
+      padding: 20px;
+      background-color: $lightGreen;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+
+      img {
+        height: 50px;
+      }
+    }
+
+  }
+}
