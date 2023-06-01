@@ -18,12 +18,24 @@ export const AuthContextProvider = ({children}) => {
     setCurrentUser(null)
    }
 
+   const updateCurrentUser = async (newUserInfo) => {
+    try {
+      const res = await axios.put(`/users/${currentUser.id}`, newUserInfo);
+      const updatedUser = res.data;
+      setCurrentUser(updatedUser);
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  
+
    useEffect(() => {
     localStorage.setItem("user", JSON.stringify(currentUser));
    }, [currentUser])
 
    return (
-    <AuthContext.Provider value={{currentUser, login, logout}}>
+    <AuthContext.Provider value={{currentUser, login, logout, updateCurrentUser }}>
       {children}
     </AuthContext.Provider>
    )

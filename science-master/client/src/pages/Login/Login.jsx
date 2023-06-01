@@ -33,6 +33,7 @@ const handleSubmit = async (e) => { //este async pt ca asteptam pt un request ap
   return (
     <div className='auth'>
       <h1>Login</h1>
+      
       <form>
         <input type='text' placeholder='username' name="username" onChange={handleChange}/>
         <input type='password' placeholder='password' name="password" onChange={handleChange}/>
