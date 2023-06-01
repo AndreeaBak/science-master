@@ -55,6 +55,7 @@ const router = createBrowserRouter([
 ])
 
 function App() {
+  document.title="Science Master";
   return (
     <div className="app">
       <div className="container">
