@@ -1,4 +1,4 @@
-$lightGreen: #c8b2f0;
+$lightGreen: #e9e1f8;
 :root {
   --primary-color: #2c3e50;
   --secondary-color: #3498db;
@@ -21,11 +21,17 @@ $lightGreen: #c8b2f0;
     //NAVBAR
 
     .navbar {
+      margin-bottom: 40px;
+      
       .container {
-        padding: 10px 0px;
+        padding: 10px 5px;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        background-color:  #f6e6e6 ;
+        box-shadow: 0px 2px 2px #5C5696;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
 
         .logo {
           img {
@@ -48,7 +54,7 @@ $lightGreen: #c8b2f0;
           }
 
           .write {
-            background-color: $lightGreen;
+            background-color: #a69fd7;
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -59,9 +65,9 @@ $lightGreen: #c8b2f0;
             border: 1px solid white;
 
             &:hover {
-              color: teal;
+              color: #a69fd7;
               background-color: white;
-              border: 1px solid teal;
+              border: 1px solid #a69fd7;
             }
           }
         }
