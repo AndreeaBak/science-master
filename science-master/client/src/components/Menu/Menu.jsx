@@ -24,7 +24,7 @@ const Menu = ({cat}) => {
       <div className="post" key={post.id}>
         <img src={`../upload/${post?.img}`} alt="" />
         <h2>{post.title}</h2>
-        <button>Read More</button>
+        <a href={`/post/${post.id}`} className='button'>Read More</a>
       </div>
     ))}
   </div>
@@ -32,3 +32,4 @@ const Menu = ({cat}) => {
 }
 
 export default Menu
+

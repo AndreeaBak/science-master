@@ -12,6 +12,14 @@ import 'jspdf-autotable';
 import DOMPurify from 'dompurify';
 import html2canvas from 'html2canvas';
 import './article.scss'
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  WhatsappShareButton,
+  WhatsappIcon,
+  TwitterShareButton,
+  TwitterIcon
+} from "react-share";
 
 const Article = () => {
   const [post, setPost] = useState({});
@@ -19,6 +27,8 @@ const Article = () => {
   const navigate = useNavigate();
   const postId = location.pathname.split("/")[2];
   const { currentUser } = useContext(AuthContext);
+
+  const shareUrl = window.location.href;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,31 +54,31 @@ const Article = () => {
   const contentRef = createRef();
 
   const generatePDF = async () => {
-  const doc = new jsPDF('portrait', 'pt', 'a4');
-  const content = contentRef.current;
+    const doc = new jsPDF('portrait', 'pt', 'a4');
+    const content = contentRef.current;
 
 
-  const canvas = await html2canvas(content, {
-    scrollY: -window.scrollY,
-    useCORS: true,
-    windowWidth: document.documentElement.offsetWidth,
-    windowHeight: document.documentElement.offsetHeight,
-    scale: 1,
-  });
+    const canvas = await html2canvas(content, {
+      scrollY: -window.scrollY,
+      useCORS: true,
+      windowWidth: document.documentElement.offsetWidth,
+      windowHeight: document.documentElement.offsetHeight,
+      scale: 1,
+    });
 
-  const imgData = canvas.toDataURL('image/png');
-  doc.addImage(imgData, 'PNG', 20, 30);
-  
-  const pageCount = Math.ceil(canvas.height / doc.internal.pageSize.getHeight()) - 1;
+    const imgData = canvas.toDataURL('image/png');
+    doc.addImage(imgData, 'PNG', 20, 30);
 
-  for (let i = 1; i < pageCount; i++) {
-    
-    doc.addPage();
-    doc.addImage(imgData, 'PNG', 20, -(i * doc.internal.pageSize.getHeight()) + 20);
-  }
+    const pageCount = Math.ceil(canvas.height / doc.internal.pageSize.getHeight()) - 1;
 
-  doc.save('Articol.pdf');
-};
+    for (let i = 1; i < pageCount; i++) {
+
+      doc.addPage();
+      doc.addImage(imgData, 'PNG', 20, -(i * doc.internal.pageSize.getHeight()) + 20);
+    }
+
+    doc.save('Articol.pdf');
+  };
 
 
   return (
@@ -96,6 +106,27 @@ const Article = () => {
           }}
         ></p>
         <button className="generatePDF" onClick={generatePDF} >Salvează ca fişier PDF</button>
+        <div style={{
+          background: "#0000",
+          height: "10vh",
+          width: '100%',
+        }}>
+          <h3>Share on social media</h3>
+          <FacebookShareButton 
+            url={shareUrl}  
+            quote="Share this post...">
+            <FacebookIcon size={40}/>
+          </FacebookShareButton>
+          <WhatsappShareButton 
+            url={shareUrl}>  
+            <WhatsappIcon size={40}/>
+          </WhatsappShareButton>
+          <TwitterShareButton 
+            url={shareUrl}>  
+            <TwitterIcon size={40}/>
+          </TwitterShareButton>
+        </div>
+        
         <Comments postId={post.id}></Comments>
       </div>
       <Menu cat={post.cat} />
