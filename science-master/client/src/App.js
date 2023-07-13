@@ -7,6 +7,7 @@ import Write from "./pages/Write/Write.jsx"
 import Profile from "./pages/Profile/Profile.jsx"
 import Navbar from "./components/Navbar/Navbar.jsx";
 import Footer from "./components/Footer/Footer.jsx";
+import Unauthorized from "./pages/Unauthorized/Unauthorized.jsx";
 
 
 const Layout = () => {
@@ -39,7 +40,11 @@ const router = createBrowserRouter([
       {
         path:"/profile/:id",
         element: <Profile />,
-      }
+      }, 
+      {
+        path:"/unauthorized",
+        element: <Unauthorized />,
+      },
 
     ]
   },

@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import axios from "axios"
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Navigate } from 'react-router-dom';
 import moment from 'moment';
+import { AuthContext } from '../../context/authContext';
 import './write.scss'
 
 const Write = () => {
@@ -14,6 +15,7 @@ const Write = () => {
   const [title, setTitle] = useState(state?.title || '');
   const [file, setFile] = useState(null);
   const [cat, setCat] = useState(state?.cat || '');
+  const {currentUser} = useContext(AuthContext)
 
   const navigate = useNavigate()
 
@@ -54,15 +56,16 @@ const Write = () => {
     }
   }
 
+  if(currentUser) {
   return (
     <div className='add'>
       <div className="content">
         <input type="text" value={title} placeholder='Title' onChange={e => setTitle(e.target.value)} />
         <div className="descEditorContainer">
-          <ReactQuill className="descEditor" theme="snow" value={value} placeholder='Adauga o descriere...' onChange={setValue} />
+          <ReactQuill className="descEditor" theme="snow" value={value} placeholder='Add description...' onChange={setValue} />
         </div>
         <div className="contentEditorContainer">
-          <ReactQuill className="contentEditor" theme="snow" value={content}  placeholder='Adauga continutul articolului...' onChange={setContent} />
+          <ReactQuill className="contentEditor" theme="snow" value={content}  placeholder='Add content...' onChange={setContent} />
         </div>
       </div>
       <div className="menu">
@@ -77,7 +80,6 @@ const Write = () => {
           <input style={{ display: "none" }} type="file" id="file" name="" onChange={e => setFile(e.target.files[0])}/>
           <label className="file" htmlFor="file">Upload Image</label>
           <div className="buttons">
-            <button>Save as a draft</button>
             <button onClick={handleClick}>Publish</button>
           </div>
         </div>
@@ -111,6 +113,12 @@ const Write = () => {
       </div>
     </div>
   )
+  } else {
+    return (
+      <Navigate to="/unauthorized" /> 
+    )
+
+  }
 }
 
 export default Write;

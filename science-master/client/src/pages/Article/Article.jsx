@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState, createRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import Edit from '../../img/edit.png';
 import Delete from '../../img/delete.png';
 import Menu from '../../components/Menu/Menu.jsx';
@@ -27,6 +28,7 @@ const Article = () => {
   const navigate = useNavigate();
   const postId = location.pathname.split("/")[2];
   const { currentUser } = useContext(AuthContext);
+
 
   const shareUrl = window.location.href;
 
@@ -80,58 +82,64 @@ const Article = () => {
     doc.save('Articol.pdf');
   };
 
-
-  return (
-    <div className='article'>
-      <div className="content" ref={contentRef}>
-        <img src={`../upload/${post?.img}`} alt=""></img>
-        <div className="user">
-          <div className="info">
-            <span>{post.username}</span>
-            <p>Posted {moment(post.date).fromNow()}</p>
-          </div>
-          {currentUser.username === post.username && (
-            <div className="edit">
-              <Link to={`/write?edit=2`} state={post}>
-                <img src={Edit} alt="" />
-              </Link>
-              <img onClick={handleDelete} src={Delete} alt="" />
+  if (currentUser) {
+    return (
+      <div className='article'>
+        <div className="content" ref={contentRef}>
+          <img src={`../upload/${post?.img}`} alt=""></img>
+          <div className="user">
+            <div className="info">
+              <span>{post.username}</span>
+              <p>Posted {moment(post.date).fromNow()}</p>
             </div>
-          )}
+            {currentUser.username === post.username && (
+              <div className="edit">
+                <Link to={`/write?edit=2`} state={post}>
+                  <img src={Edit} alt="" />
+                </Link>
+                <img onClick={handleDelete} src={Delete} alt="" />
+              </div>
+            )}
+          </div>
+          <h1>{post.title}</h1>
+          <p
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(post.content),
+            }}
+          ></p>
+          <button className="generatePDF" onClick={generatePDF} >Salvează ca fişier PDF</button>
+          <div style={{
+            background: "#0000",
+            height: "10vh",
+            width: '100%',
+          }}>
+            <h3>Share on social media</h3>
+            <FacebookShareButton
+              url={shareUrl}
+              quote="Share this post...">
+              <FacebookIcon size={40} />
+            </FacebookShareButton>
+            <WhatsappShareButton
+              url={shareUrl}>
+              <WhatsappIcon size={40} />
+            </WhatsappShareButton>
+            <TwitterShareButton
+              url={shareUrl}>
+              <TwitterIcon size={40} />
+            </TwitterShareButton>
+          </div>
+
+          <Comments postId={post.id}></Comments>
         </div>
-        <h1>{post.title}</h1>
-        <p
-          dangerouslySetInnerHTML={{
-            __html: DOMPurify.sanitize(post.content),
-          }}
-        ></p>
-        <button className="generatePDF" onClick={generatePDF} >Salvează ca fişier PDF</button>
-        <div style={{
-          background: "#0000",
-          height: "10vh",
-          width: '100%',
-        }}>
-          <h3>Share on social media</h3>
-          <FacebookShareButton 
-            url={shareUrl}  
-            quote="Share this post...">
-            <FacebookIcon size={40}/>
-          </FacebookShareButton>
-          <WhatsappShareButton 
-            url={shareUrl}>  
-            <WhatsappIcon size={40}/>
-          </WhatsappShareButton>
-          <TwitterShareButton 
-            url={shareUrl}>  
-            <TwitterIcon size={40}/>
-          </TwitterShareButton>
-        </div>
-        
-        <Comments postId={post.id}></Comments>
+        <Menu cat={post.cat} />
       </div>
-      <Menu cat={post.cat} />
-    </div>
-  )
+    )
+  } else {
+    return (
+      <Navigate to="/unauthorized" /> 
+    )
+
+  }
 }
 
 export default Article;

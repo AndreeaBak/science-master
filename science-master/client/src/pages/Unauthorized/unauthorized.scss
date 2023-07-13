@@ -1,0 +1,54 @@
+
+$lightGreen: #c8b2f0;
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #3498db;
+  --light-color: #ecf0f1;
+  --dark-color: #34495e;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+
+  .container {
+    width: 1024px;
+    
+    .link {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .unauthorized {
+      text-align: center;
+      height: 518px;
+    
+      h1 {
+        font-size: 24px;
+        margin-bottom: 16px;
+      }
+    
+      p {
+        font-size: 16px;
+        margin-bottom: 16px;
+      }
+    
+      a {
+        display: inline-block;
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    
+        &:hover {
+          background-color: #0056b3;
+        }
+      }
+    }
+    
+    
+    
+  }
+}

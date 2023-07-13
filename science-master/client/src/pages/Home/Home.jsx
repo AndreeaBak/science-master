@@ -45,7 +45,7 @@ const Home = () => {
           type='text'
           value={searchQuery}
           onChange={handleSearch}
-          placeholder='Caută...'
+          placeholder='Search...'
         />
       </div>
       <div className="posts">
